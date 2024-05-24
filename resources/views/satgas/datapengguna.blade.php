@@ -20,6 +20,9 @@
                                     <tr>
                                         <th scope="col">Nama</th>
                                         <th scope="col">NPM NIDN NPK</th>
+<<<<<<< HEAD
+=======                                   
+>>>>>>> 74c265bdc592b3316a7f57590604ae8c3bbbb2ba
                                     </tr>
                                 </thead>
                                 <tbody>
