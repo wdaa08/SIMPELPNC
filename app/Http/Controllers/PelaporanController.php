@@ -115,14 +115,25 @@ class PelaporanController extends Controller
     public function editlaporan($id)
     {
         $pelapor = Pelaporan::findOrFail($id);
-        $formattedDate = isset($pelapor->tanggal_pelaporan) ? \Carbon\Carbon::parse($pelapor->tanggal_pelaporan)->format('Y-m-d') : '';
-        return view('pelapor.edit_laporan', compact('pelapor', 'formattedDate'));
+
+    // Pastikan alasan_pengaduan adalah array
+    if (!is_array($pelapor->alasan_pengaduan)) {
+        $pelapor->alasan_pengaduan = $pelapor->alasan_pengaduan ? explode(', ', $pelapor->alasan_pengaduan) : [];
+    }
+
+    if (!is_array($pelapor->kebutuhan_korban)) {
+        $pelapor->kebutuhan_korban = explode(', ', $pelapor->kebutuhan_korban);
+    }
+
+    $formattedDate = isset($pelapor->tanggal_pelaporan) ? \Carbon\Carbon::parse($pelapor->tanggal_pelaporan)->format('Y-m-d') : '';
+
+    return view('pelapor.edit_laporan', compact('pelapor', 'formattedDate'));
     }
 
     public function updatelaporan(Request $request, $id)
     {
         $pelapor = Pelaporan::findOrFail($id);
-
+        
         // Validasi data
         $rules = [
             'nama_pelapor' => 'required|string',
@@ -138,7 +149,7 @@ class PelaporanController extends Controller
             'tanggal_pelaporan' => 'required|date',
             'tanda_tangan_pelapor' => 'nullable|image|mimes:jpeg,png,jpg',
             'nomor_hp_pihak_lain' => 'nullable|string',
-            'kebutuhan_korban' => 'nullable',
+            'kebutuhan_korban' => 'nullable|array',
         ];
 
         $messages = [
@@ -185,11 +196,5 @@ class PelaporanController extends Controller
         $pelapor->save();
 
         return redirect()->route('laporansaya')->with('success', 'Formulir pelaporan berhasil diupdate.');
-    }
-
-    public function ttdview($id)
-    {
-        $image = Pelaporan::findOrFail($id);
-        return view('satgas.ttdView', compact('image'));
     }
 }

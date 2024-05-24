@@ -132,7 +132,8 @@
                                     <label for="alasanPengaduan" class="form-label">Alasan Pengaduan</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="alasan_pengaduan[]"
-                                            id="saksi" value="Saya seorang saksi yang khawatir dengan keadaan korban" @if (is_array($pelapor->alasan_pengaduan) && in_array('Saya seorang saksi yang khawatir dengan keadaan korban', $pelapor->alasan_pengaduan)) 
+                                        id="saksi" value="Saya seorang saksi yang khawatir dengan keadaan korban" 
+                                        @if (is_array($pelapor->alasan_pengaduan) && in_array('Saya seorang saksi yang khawatir dengan keadaan korban', $pelapor->alasan_pengaduan)) 
                                             checked 
                                         @endif>
                                         <label class="form-check-label" for="saksi">
@@ -150,24 +151,29 @@
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="alasan_pengaduan[]"
-                                            id="tindakTegas" value="Saya ingin perguruan tinggi menindak tegas terlapor">
+                                        id="tindakTegas" value="Saya ingin perguruan tinggi menindak tegas terlapor" 
+                                        @if (is_array($pelapor->alasan_pengaduan) && in_array('Saya ingin perguruan tinggi menindak tegas terlapor', $pelapor->alasan_pengaduan))
+                                            checked
+                                        @endif>
                                         <label class="form-check-label" for="tindakTegas">
                                             Saya ingin perguruan tinggi menindak tegas terlapor
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="alasan_pengaduan[]"
-                                            id="dokumentasi"
-                                            value="Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya">
-                                        <label class="form-check-label " for="dokumentasi">
-                                            Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan
-                                            perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya
+                                     id="dokumentasi"   value="Saya ingin satuan tugas mendokumentasikan kejadiannya,meningkatkan keamanan perguruan tinggi dari kekerasan seksual,dan memberi perlindungan bagi saya"
+
+                                        @if (is_array($pelapor->alasan_pengaduan) && in_array('Saya ingin satuan tugas mendokumentasikan kejadiannya,meningkatkan keamanan perguruan tinggi dari kekerasan seksual,dan memberi perlindungan bagi saya', $pelapor->alasan_pengaduan))
+                                            checked
+                                        @endif>
+                                        <label class="form-check-label" for="dokumentasi">
+                                            Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         {{-- <input class="form-check-input" type="checkbox" id="lainnya" value="lainnya"> --}}
                                         <label class="form-check-label" for="lainnya">Lainnya :</label>
-                                        <input type="text" class="form-control" id="InputText"
+                                        <input type="text" {{ $pelapor->cerita_peristiwa }} class="form-control" id="InputText"
                                             name="alasan_pengaduan[]" placeholder="Opsional">
                                     </div>
                                 </div>

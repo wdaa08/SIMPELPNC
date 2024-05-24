@@ -146,15 +146,19 @@
                                             Saya ingin perguruan tinggi menindak tegas terlapor
                                         </label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="alasan_pengaduan[]"
-                                            id="dokumentasi"
-                                            value="Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya">
-                                        <label class="form-check-label " for="dokumentasi">
-                                            Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan
-                                            perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya
-                                        </label>
-                                    </div>
+                               
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="alasan_pengaduan[dokumentasi]"
+                                        id="dokumentasi"
+                                        value="Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya"
+                                        @if (isset($pelapor->alasan_pengaduan['dokumentasi']))
+                                            checked
+                                        @endif>
+                                    <label class="form-check-label " for="dokumentasi">
+                                        Saya ingin satuan tugas mendokumentasikan kejadiannya, meningkatkan keamanan perguruan tinggi dari kekerasan seksual, dan memberi perlindungan bagi saya
+                                    </label>
+                                </div>
+
                                     <div class="form-check">
                                         {{-- <input class="form-check-input" type="checkbox" id="lainnya" value="lainnya"> --}}
                                         <label class="form-check-label" for="lainnya">Lainnya :</label>
@@ -226,7 +230,7 @@
                                             name="kebutuhan_korban[]" placeholder="Opsional">
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="kebutuhan_korban"
+                                        <input class="form-check-input" type="checkbox" name="kebutuhan_korban[]"
                                             id="tidakMembutuhkan" value="Tidak Membutuhkan Pendampingan">
                                         <label class="form-check-label" for="tidakMembutuhkan">
                                             Tidak Membutuhkan Pendampingan
